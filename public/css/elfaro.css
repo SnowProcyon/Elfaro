@@ -1,0 +1,277 @@
+/* ================================================
+   El Faro - Estilos personalizados
+   Arquitectura MVC | Bulma Framework
+   ================================================ */
+
+/* --- Variables globales --- */
+:root {
+    --faro-dark:    #1a1a2e;
+    --faro-accent:  #e8a020;
+    --faro-blue:    #3e8ed0;
+    --faro-light:   #f5f7fa;
+    --shadow-sm:    0 2px 6px rgba(0,0,0,.08);
+    --shadow-md:    0 8px 16px rgba(0,0,0,.12);
+    --radius:       8px;
+}
+
+/* --- Base --- */
+body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background-color: var(--faro-light);
+    color: #363636;
+}
+
+/* --- Aviso superior --- */
+.avisos-top {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-radius: 0;
+    margin-bottom: 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,.05);
+}
+
+/* --- Navbar marca --- */
+.faro-brand {
+    font-family: 'Georgia', serif;
+    letter-spacing: 1px;
+}
+
+/* =====================================================
+   MEJORA 3: Navbar activo contextual
+   El ítem activo se resalta con --faro-accent en
+   la navbar oscura de Bulma (is-dark no lo hace por defecto)
+   ===================================================== */
+.navbar.is-dark .navbar-item.is-active {
+    background-color: var(--faro-accent) !important;
+    color: var(--faro-dark) !important;
+    font-weight: bold;
+}
+.navbar.is-dark .navbar-item.is-active:hover {
+    background-color: #c88010 !important;
+}
+
+/* --- Tarjeta destacada --- */
+.articulo-destacado {
+    height: 100%;
+    border: none;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+.articulo-destacado:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+.articulo-destacado .card-image {
+    height: 320px;
+    overflow: hidden;
+}
+.articulo-destacado .card-image img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+/* --- Tarjeta mini --- */
+.card-mini {
+    height: 100%;
+    border: none;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+.card-mini:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+.card-mini .card-image {
+    height: 150px;
+    overflow: hidden;
+}
+.card-mini .card-image img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+/* =====================================================
+   MEJORA 1: Placeholder de imagen por categoría
+   Cuando un artículo no tiene imagen_url se muestra
+   un bloque con gradiente del color de su categoría.
+   ===================================================== */
+.faro-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+/* Altura para tarjeta destacada */
+.articulo-destacado .faro-placeholder { height: 320px; }
+/* Altura para tarjeta mini */
+.card-mini .faro-placeholder           { height: 150px; }
+
+.faro-placeholder[data-cat="tecnologia"] {
+    background: linear-gradient(135deg, #2980B9 0%, #1A252F 100%);
+}
+.faro-placeholder[data-cat="deportes"] {
+    background: linear-gradient(135deg, #C0392B 0%, #641E16 100%);
+}
+.faro-placeholder[data-cat="negocios"] {
+    background: linear-gradient(135deg, #2471A3 0%, #154360 100%);
+}
+.faro-placeholder[data-cat="cultura"] {
+    background: linear-gradient(135deg, #1E8449 0%, #145A32 100%);
+}
+.faro-placeholder[data-cat="finanzas"] {
+    background: linear-gradient(135deg, #D4AC0D 0%, #7D6608 100%);
+}
+.faro-placeholder[data-cat="general"] {
+    background: linear-gradient(135deg, #566573 0%, #2C3E50 100%);
+}
+
+.placeholder-inner {
+    text-align: center;
+    color: #fff;
+    padding: 1rem;
+}
+.placeholder-icon {
+    font-size: 2.4rem;
+    display: block;
+    margin-bottom: .5rem;
+    opacity: .9;
+}
+.placeholder-cat {
+    font-size: .75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: .85;
+}
+
+/* --- Planes de suscripción --- */
+.plan-card {
+    transition: transform .15s ease, box-shadow .15s ease;
+    cursor: pointer;
+}
+.plan-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+.plan-destacado {
+    border: 2px solid var(--faro-accent);
+    background-color: #fffde7;
+}
+
+/* --- Footer --- */
+.footer {
+    padding: 3rem 1.5rem 2rem;
+}
+.footer h4.title {
+    margin-bottom: 1rem;
+    position: relative;
+    padding-bottom: .5rem;
+}
+.footer h4.title::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 40px; height: 2px;
+    background-color: var(--faro-accent);
+}
+.footer a {
+    color: #dbdbdb;
+    transition: color .2s ease;
+}
+.footer a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* --- Formularios --- */
+.field .label { font-family: system-ui, sans-serif; }
+.input:focus, .textarea:focus, .select select:focus {
+    border-color: var(--faro-blue);
+    box-shadow: 0 0 0 0.125em rgba(62,142,208,.25);
+}
+
+/* =====================================================
+   MEJORA 2: Validación visual CSS en tiempo real
+   Usa :valid e :invalid nativos de HTML5 + :not(:placeholder-shown)
+   para activarse sólo cuando el usuario ha escrito algo.
+   ===================================================== */
+.input:not(:placeholder-shown):valid,
+.textarea:not(:placeholder-shown):valid {
+    border-color: #1E8449 !important;
+    box-shadow: 0 0 0 0.125em rgba(30,132,73,.20) !important;
+}
+.input:not(:placeholder-shown):invalid,
+.textarea:not(:placeholder-shown):invalid {
+    border-color: #C0392B !important;
+    box-shadow: 0 0 0 0.125em rgba(192,57,43,.20) !important;
+}
+/* Etiqueta de estado junto al label */
+.faro-field-status {
+    float: right;
+    font-size: .75rem;
+    font-weight: bold;
+    margin-top: .1rem;
+}
+.input:not(:placeholder-shown):valid   ~ .faro-field-status::after { content: '✓ OK';  color: #1E8449; }
+.input:not(:placeholder-shown):invalid ~ .faro-field-status::after { content: '✗ Revisar'; color: #C0392B; }
+
+/* =====================================================
+   MEJORA 4: Botón de acción unificado con --faro-accent
+   Reemplaza is-dark (contacto) e is-warning (registro)
+   por una clase propia que usa la variable de marca.
+   ===================================================== */
+.faro-btn {
+    background-color: var(--faro-accent) !important;
+    color: var(--faro-dark) !important;
+    border-color: transparent !important;
+    font-weight: bold;
+    transition: background-color .2s ease, transform .1s ease, box-shadow .2s ease;
+}
+.faro-btn:hover,
+.faro-btn:focus {
+    background-color: #c88010 !important;
+    color: var(--faro-dark) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(232,160,32,.35);
+}
+.faro-btn:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* --- Barra de filtros por categoría (home) --- */
+.faro-filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    margin-bottom: 1.5rem;
+}
+.faro-filtros .tag {
+    cursor: pointer;
+    user-select: none;
+    opacity: .65;
+    transition: opacity .15s ease, transform .15s ease;
+    font-size: .78rem;
+    padding: .35em .75em;
+}
+.faro-filtros .tag:hover         { opacity: .9; }
+.faro-filtros .tag.is-selected   { opacity: 1; transform: scale(1.08); font-weight: bold; }
+.faro-filtros .tag[data-cat=""]  { background: var(--faro-dark); color: #fff; }
+
+/* Artículos ocultos por filtro */
+.articulo-col[hidden] { display: none !important; }
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .articulo-destacado .card-image   { height: 220px; }
+    .articulo-destacado .faro-placeholder { height: 220px; }
+    .card-mini .card-image            { height: 120px; }
+    .card-mini .faro-placeholder      { height: 120px; }
+}
